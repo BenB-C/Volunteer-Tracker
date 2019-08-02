@@ -1,6 +1,5 @@
 class Project
-  attr_reader :id
-  attr_reader :title
+  attr_reader :id, :title
 
   def initialize(attributes)
     @title = attributes[:title]
@@ -28,13 +27,20 @@ class Project
     DB.exec("DELETE FROM projects WHERE id = #{@id}")
   end
 
+  def volunteers
+    db_records = DB.exec("SELECT * FROM volunteers WHERE project_id = #{@id};")
+    db_records.map { |db_record| Volunteer.new_from_db(db_record) }
+  end
+
+  def self.new_from_db(db_record)
+    title = db_record.fetch("title")
+    id = db_record.fetch("id").to_i
+    Project.new({:title => title, :id => id})
+  end
+
   def self.all
-    returned_projects = DB.exec("SELECT * FROM projects")
-    returned_projects.map do |project|
-      title = project.fetch("title")
-      id = project.fetch("id")
-      Project.new({:title => title, :id => id})
-    end
+    db_records = DB.exec("SELECT * FROM projects")
+    db_records.map { |db_record| Project.new_from_db(db_record) }
   end
 
   def self.find(id)
