@@ -4,10 +4,6 @@
 
 #### By Ben Bennett-Cauchon
 
-## Heroku Deployment
-
-TODO
-
 ## Description
 
 An application that tracks projects and the volunteers working on them. Each volunteer will belong to only one project (one project, many volunteers).
@@ -24,7 +20,17 @@ An application that tracks projects and the volunteers working on them. Each vol
 
 ## Setup/Installation Requirements
 
-TODO
+* clone/download the repository
+* navigate to the directory in a terminal
+* run the commands
+```
+bundle install
+createdb volunteer_tracker
+psql volunteer_tracker < database_backup.sql
+createdb -T volunteer_tracker volunteer_tracker_test
+ruby app.rb
+```
+* open http://localhost:4567 in a web browser
 
 ## Support and contact details
 
@@ -32,7 +38,13 @@ If you find a bug, run into any issues, or have questions, ideas or concerns ple
 
 ## Technologies Used
 
-TODO
+* ruby
+* sinatra
+* rspec
+* capybary
+* pry
+* pg
+* postgresql
 
 ### License
 
