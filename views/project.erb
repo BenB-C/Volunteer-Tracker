@@ -1,0 +1,19 @@
+<h2>Project Details</h2>
+
+<% if @project %>
+  <table class="project-description">
+    <tr>
+      <td>Project Title:</td>
+      <td><span class="project-title"><%= @project.title %></span></td>
+    </tr>
+    <tr>
+      <td>Project ID:</td>
+      <td><span class="project-id"><%= @project.id %></span></td>
+    </tr>
+  </table>
+  <p><a href="/projects/<%= @project.id %>/edit">Edit Project</a></p>
+<% else %>
+    <p>The project could not be found.</p>
+<% end %>
+
+<p><a href="/projects" title="View All Projects">View All Projects</a></p>

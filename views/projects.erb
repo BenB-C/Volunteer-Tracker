@@ -1,14 +1,12 @@
-<h1>Projects</h1>
+<h2>Projects</h2>
 
 <% if @projects.any? %>
   <table>
-    <tr> <th>Project ID</th><th>Project Title</th> </tr>
+    <tr> <th>ID</th><th>Title</th> </tr>
     <% @projects.each do |project| %>
       <tr>
-        <a href="/projects/<%= project.id %>">
           <td><%= project.id%></td>
-          <td><%=project.title%></td>
-        </a>
+          <td><a href="/projects/<%= project.id %>" title="Project Details"><%=project.title%></a></td>
       </tr>
     <% end %>
   </table>
@@ -16,7 +14,7 @@
   <p>There are no projects to display.</p>
 <% end %>
 
-<h2>Add a New Project</h2>
+<h3>Add a New Project</h3>
 
 <form action="/new_project" method="post">
   <div class="form-group">
