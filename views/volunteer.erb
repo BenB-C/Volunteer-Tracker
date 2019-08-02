@@ -1,6 +1,8 @@
 <h2>Volunteer Details</h2>
 
 <% if @volunteer %>
+  <% volunteer_project = Project.find(@volunteer.project_id) %>
+
   <table class="volunteer-description">
     <tr>
       <td>Name:</td>
@@ -12,8 +14,7 @@
     </tr>
     <tr>
       <td>Project:</td>
-      <% project = Project.find(@volunteer.project_id) %>
-      <td><span class="id"><%= project.title %></span></td>
+      <td><span class="id"><%= volunteer_project.title %></span></td>
     </tr>
   </table>
 
@@ -21,10 +22,25 @@
 
   <form action="/volunteers/<%= @volunteer.id %>/edit" method="post">
     <input name="_method" type="hidden" value="patch">
-    <label for="name">Volunteer name:</label>
-    <input name="name" type="text" value="<%= @volunteer.name %>">
+
+    <div class="form-group">
+      <label for="name">Change name:</label>
+      <input name="name" type="text" value="<%= @volunteer.name %>">
+    </div>
+    <div class="form-group">
+      <label for="project_id">Change project:</label>
+      <select name="project_id" class="form_control">
+        <% projects = Project.all %>
+        <% projects.each do |project| %>
+          <option value="<%= project.id %>" <% if project.id == @volunteer.project_id %>selected<% end %>><%= project.title %></option>
+        <% end %>
+      </select>
+    </div>
     <button type="submit" class="btn">Update Volunteer</button>
   </form>
 <% else %>
   <p>The volunteer could not be found.</p>
 <% end %>
+
+<p><a href="/projects/<%= @volunteer.project_id %>">View Details for Project <%= volunteer_project.title %></a></p>
+<p><a href="/projects">View all Projects</a></p>

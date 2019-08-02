@@ -55,12 +55,16 @@ describe 'the volunteer detail page path', {:type => :feature} do
     test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
     test_project.save
     project_id = test_project.id.to_i
+    test_project2 = Project.new({:title => 'Teaching Ruby to Kids', :id => nil})
+    test_project2.save
     test_volunteer = Volunteer.new({:name => 'Jasmine', :project_id => project_id, :id => nil})
     test_volunteer.save
     visit "/projects/#{project_id}"
     click_link('Jasmine')
     fill_in('name', :with => 'Jane')
+    select('Teaching Ruby to Kids', :from => 'project_id')
     click_button('Update Volunteer')
     expect(page).to have_content('Jane')
+    expect(page).to have_content('Teaching Ruby to Kids')
   end
 end
