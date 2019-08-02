@@ -4,16 +4,38 @@
   <table class="project-description">
     <tr>
       <td>Project Title:</td>
-      <td><span class="project-title"><%= @project.title %></span></td>
+      <td><span class="detail-display"><%= @project.title %></span></td>
     </tr>
     <tr>
       <td>Project ID:</td>
-      <td><span class="project-id"><%= @project.id %></span></td>
+      <td><span class="detail-display"><%= @project.id %></span></td>
     </tr>
   </table>
   <p><a href="/projects/<%= @project.id %>/edit">Edit Project</a></p>
+
+  <% volunteers = @project.volunteers %>
+  <% if volunteers.any? %>
+    <h3>Project Volunteers</h3>
+    <ul>
+      <% volunteers.each do |volunteer| %>
+        <li><a href="/volunteers/<%= volunteer.id %>"><%= volunteer.name %></a></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>This project does not have any volunteers.</p>
+  <% end %>
+
+  <h3>Add a Volunteer to Project</h3>
+
+  <form action="/projects/<%= @project.id %>/new_volunteer" method="post">
+    <div class="form-group">
+      <label for="name">Volunteer Name</label>
+      <input name="name" class="form-control" type="text">
+    </div>
+    <button type="submit" class="btn">Add Volunteer</button>
+  </form>
 <% else %>
-    <p>The project could not be found.</p>
+  <p>The project could not be found.</p>
 <% end %>
 
 <p><a href="/projects" title="View All Projects">View All Projects</a></p>
