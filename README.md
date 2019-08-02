@@ -18,6 +18,10 @@ An application that tracks projects and the volunteers working on them. Each vol
 * As a non-profit employee, I want to view and add volunteers.
 * As a non-profit employee, I want to add volunteers to a project.
 
+## Database Schema
+
+![Database Schema](database_schema.png)
+
 ## Setup/Installation Requirements
 
 TODO

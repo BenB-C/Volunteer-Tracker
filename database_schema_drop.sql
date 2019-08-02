@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS volunteers;
+DROP TABLE IF EXISTS projects;
