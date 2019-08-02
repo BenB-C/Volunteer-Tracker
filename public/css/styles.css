@@ -1,0 +1,36 @@
+.jumbotron {
+  padding: 20px;
+  background-color: #44ada4;
+}
+
+#main-heading {
+  text-align: center;
+  background-color: #246B73;
+  color: white;
+  margin: 0;
+  padding: 20px;
+}
+
+th, td {
+  padding: 5px;
+}
+
+.form-control {
+  width: 250px;
+}
+
+form {
+  margin-bottom: 15px;
+}
+
+.detail-display {
+  font-size: 1.5em;
+}
+
+li {
+  font-size: 1.5em;
+}
+
+a {
+  color: #5752D9
+}

@@ -6,7 +6,7 @@
     <% @projects.each do |project| %>
       <tr>
           <td><%= project.id%></td>
-          <td><a href="/projects/<%= project.id %>" title="Project Details"><%=project.title%></a></td>
+          <td><span class="detail-display"><a href="/projects/<%= project.id %>" title="Project Details"><%=project.title%></a></span></td>
       </tr>
     <% end %>
   </table>
@@ -14,12 +14,11 @@
   <p>There are no projects to display.</p>
 <% end %>
 
-<h3>Add a New Project</h3>
+<h3>Create a New Project</h3>
 
 <form action="/new_project" method="post">
   <div class="form-group">
-    <label for="title">Project title</label>
-    <input name="title" class="form-control" type="text">
+    <input name="title" class="form-control" type="text" placeholder="Project Title">
   </div>
   <button type="submit" class="btn btn-success">Create Project</button>
 </form>

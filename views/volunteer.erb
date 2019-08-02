@@ -14,21 +14,26 @@
     </tr>
     <tr>
       <td>Project:</td>
-      <td><span class="id"><%= volunteer_project.title %></span></td>
+      <td><span class="detail-display"><%= volunteer_project.title %></span></td>
     </tr>
   </table>
 
-  <h3>Edit Volunteer Details</h3>
+  <form action="/volunteers/<%= @volunteer.id %>/delete" method="post">
+    <input name="_method" type="hidden" value="delete">
+    <button type="submit" class="btn btn-danger">Delete Volunteer</button>
+  </form>
+
+  <h3>Update Volunteer Details</h3>
 
   <form action="/volunteers/<%= @volunteer.id %>/edit" method="post">
     <input name="_method" type="hidden" value="patch">
 
     <div class="form-group">
-      <label for="name">Change name:</label>
+      <label for="name">Update name:</label>
       <input name="name" type="text" value="<%= @volunteer.name %>">
     </div>
     <div class="form-group">
-      <label for="project_id">Change project:</label>
+      <label for="project_id">Update project:</label>
       <select name="project_id" class="form_control">
         <% projects = Project.all %>
         <% projects.each do |project| %>
@@ -37,10 +42,6 @@
       </select>
     </div>
     <button type="submit" class="btn btn-success">Update Volunteer</button>
-  </form>
-  <form action="/volunteers/<%= @volunteer.id %>/delete" method="post">
-    <input name="_method" type="hidden" value="delete">
-    <button type="submit" class="btn btn-danger">Delete Volunteer</button>
   </form>
 <% else %>
   <p>The volunteer could not be found.</p>
