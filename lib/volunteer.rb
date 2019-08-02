@@ -48,6 +48,7 @@ class Volunteer
   end
 
   def self.find(id)
+    id = id.to_i
     db_record = DB.exec("SELECT * FROM volunteers WHERE id = #{id};").first
     if db_record
       Volunteer.new_from_db(db_record)

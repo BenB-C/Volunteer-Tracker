@@ -44,6 +44,7 @@ class Project
   end
 
   def self.find(id)
+    id = id.to_i
     project = DB.exec("SELECT * FROM projects WHERE id = #{id};").first
     if project
       title = project.fetch("title")
