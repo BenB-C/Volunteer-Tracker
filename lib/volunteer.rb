@@ -37,8 +37,8 @@ class Volunteer
 
   def self.new_from_db(db_record)
     name = db_record.fetch("name")
-    project_id = db_record.fetch("project_id")
-    id = db_record.fetch("id")
+    project_id = db_record.fetch("project_id").to_i
+    id = db_record.fetch("id").to_i
     Volunteer.new({:name => name, :project_id => project_id, :id => id})
   end
 
