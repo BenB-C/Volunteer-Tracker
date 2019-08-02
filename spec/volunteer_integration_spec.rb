@@ -68,3 +68,20 @@ describe 'the volunteer detail page path', {:type => :feature} do
     expect(page).to have_content('Teaching Ruby to Kids')
   end
 end
+
+# A user should be able to nagivate to a volunteer's detail page and delete the volunteer. The user will then be directed to the volunteer's project's detail page. The volunteer should no longer be on the list of volunteers for the project.
+
+describe 'the volunteer delete page path', {:type => :feature} do
+  it 'allows a user to delete a volunteer' do
+    test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+    test_project.save
+    project_id = test_project.id.to_i
+    test_volunteer = Volunteer.new({:name => 'Jasmine', :project_id => project_id, :id => nil})
+    test_volunteer.save
+    visit "/projects/#{project_id}"
+    click_link('Jasmine')
+    click_button('Delete Volunteer')
+    visit "/projects/#{project_id}"
+    expect(page).not_to have_content('Jasmine')
+  end
+end

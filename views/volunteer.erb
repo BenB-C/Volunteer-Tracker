@@ -38,6 +38,10 @@
     </div>
     <button type="submit" class="btn">Update Volunteer</button>
   </form>
+  <form action="/volunteers/<%= @volunteer.id %>/delete" method="post">
+    <input name="_method" type="hidden" value="delete">
+    <button type="submit" class="btn">Delete Volunteer</button>
+  </form>
 <% else %>
   <p>The volunteer could not be found.</p>
 <% end %>
